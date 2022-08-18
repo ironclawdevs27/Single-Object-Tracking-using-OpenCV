@@ -1,6 +1,7 @@
 import cv2
 import sys
 import math
+from mav_override import *
 def rescaleFrame(frame, scale=0.5):
     width = int(frame.shape[1] * scale)
     height = int(frame.shape[0] * scale)
@@ -18,8 +19,8 @@ def tracking():
             tracker = cv2.Tracker_create('CSRT')
         else:
             tracker = cv2.TrackerCSRT_create()
-        video = cv2.VideoCapture("footage2.mp4")
-        # video = cv2.VideoCapture(0)
+        #video = cv2.VideoCapture("footage2.mp4")
+        video = cv2.VideoCapture(0)
         if not video.isOpened():
             print('Could not open video')
             sys.exit()
@@ -60,6 +61,7 @@ def tracking():
                 get_cur_coordinates(coor)
                 cv2.putText(frame_resized, 'Distance from Centre:' +
                             str(length), (x, y - 7), 0, 0.5, (0, 0, 255), 2)
+                set_rc_override(coor)
             else:
                 cv2.putText(frame_resized, "Tracking failure detected",
                             (100, 80), cv2.FONT_HERSHEY_SIMPLEX, 0.75, (0, 0, 255), 2)
@@ -75,4 +77,5 @@ def map_range(x, in_min, in_max, out_min, out_max):
     return (x - in_min) * (out_max - out_min) // (in_max - in_min) + out_min
 def get_cur_coordinates(cur_c):
     print(cur_c)
+
 tracking()
