@@ -19,8 +19,8 @@ def tracking():
             tracker = cv2.Tracker_create('CSRT')
         else:
             tracker = cv2.TrackerCSRT_create()
-        #video = cv2.VideoCapture("footage2.mp4")
-        video = cv2.VideoCapture(0)
+        video = cv2.VideoCapture("footage2.mp4")
+        #video = cv2.VideoCapture(0)
         if not video.isOpened():
             print('Could not open video')
             sys.exit()

@@ -33,12 +33,12 @@ def set_rc_channel_pwm_roll_pitch(pwm_roll=1500,pwm_pitch=1500):
         *rc_channel_values)                  # RC channel list, in microseconds.
 
 def set_rc_override(coordinates):
-    x= map_range(coordinates[0],-480,480,1000,2000)
-    y= map_range(coordinates[1],-360,360,1000,2000)
+    x= map_range(coordinates[0],0,480,1500,1600)
+    y= map_range(coordinates[1],0,360,1500,1600)
     print(f"Roll and Pitch are :{x},{y}")
     set_rc_channel_pwm_roll_pitch(x,y)
-    msg = the_connection.recv_match(type='RC_CHANNELS',blocking=True)
-    print(msg)                               
+    # msg = the_connection.recv_match(type='RC_CHANNELS',blocking=True)
+    # print(msg)                               
 
 
 # while True:
