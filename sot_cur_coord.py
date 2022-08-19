@@ -61,7 +61,7 @@ def tracking():
                 get_cur_coordinates(coor)
                 cv2.putText(frame_resized, 'Distance from Centre:' +
                             str(length), (x, y - 7), 0, 0.5, (0, 0, 255), 2)
-                set_rc_override(coor)
+                set_rc_override(coor,w,h)
             else:
                 cv2.putText(frame_resized, "Tracking failure detected",
                             (100, 80), cv2.FONT_HERSHEY_SIMPLEX, 0.75, (0, 0, 255), 2)
